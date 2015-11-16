@@ -1,0 +1,17 @@
+{
+  "name": "360",
+  "version": "0.0.0",
+  "authors": [
+    "曹航 <caohanghust@gmail.com>"
+  ],
+  "description": "360",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {}
+}

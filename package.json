@@ -1,0 +1,19 @@
+{
+  "name": "360",
+  "version": "1.0.0",
+  "description": "Dian团队360考核",
+  "main": "index.js",
+  "scripts": {
+    "watch": "webpack --process --colors --profile --watch"
+  },
+  "author": "Cao Hang",
+  "license": "ISC",
+  "dependencies": {
+    "bower-webpack-plugin": "^0.1.9",
+    "extract-text-webpack-plugin": "^0.9.1",
+    "html-webpack-plugin": "^1.6.2",
+    "react": "^0.14.2",
+    "react-dom": "^0.14.2",
+    "react-router": "^1.0.0"
+  }
+}
