@@ -3,7 +3,7 @@ var React = require('react');
 var Login = React.createClass({
     render:function(){
         return <div>
-            <button className="btn btn-default navbar-btn">登陆</button>
+            <button className="btn btn-default navbar-btn">Login</button>
         </div>
     }
 })
