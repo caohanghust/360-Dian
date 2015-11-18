@@ -4,6 +4,7 @@
 - reflux + react
 - webpack
 - bower + npm
+- animate（第三方简易css3动画库）
 
 ## 目录结构
          ├── build               [项目发布后生成的目录或文件]
