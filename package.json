@@ -10,12 +10,15 @@
   "license": "ISC",
   "dependencies": {
     "bower-webpack-plugin": "^0.1.9",
+    "deep-equal": "^1.0.1",
     "extract-text-webpack-plugin": "^0.9.1",
+    "history": "^1.13.1",
     "html-webpack-plugin": "^1.6.2",
     "less": "^2.5.3",
     "less-loader": "^2.2.1",
+    "qs": "^6.0.0",
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
-    "react-router": "^1.0.0"
+    "react-router": "^1.0.0-rc3"
   }
 }

@@ -3,15 +3,17 @@ require('bootstrap/dist/css/bootstrap.css');
 //第三方动画库
 require('./style/animate.css');
 
+require('qs');
 //本地样式文件
 require('./style/main.less');
 
+import React from 'react';
+import { render } from 'react-dom';
+import { Router , Route , Link} from 'react-router';
 
-var React = require('react');
-var ReactDom = require('react-dom');
 //依赖模块
-var Header = require('./js/header');
-var Sidebar = require('./js/sidebar');
+import Header from './js/header';
+import Sidebar from './js/sidebar';
 
 var App = React.createClass({
     render:function(){
@@ -29,4 +31,17 @@ var App = React.createClass({
     }
 })
 
-ReactDom.render(<App/>,document.getElementById('app'));
+var NoMatch = React.createClass({
+    render:function(){
+        return <div>404 NOT FOUND</div>
+    }
+})
+
+render((
+    <Router>
+        <Route path="/">
+            <Route path="index" component={App}/>
+            <Route path="*" component={NoMatch}/>
+        </Route>
+    </Router>
+), document.getElementById('app'))
