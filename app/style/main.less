@@ -2,17 +2,103 @@
   float: right;
 }
 
+//Header
+.curtain{
+  position: absolute;
+  opacity: 0.5;
+  background-color: black;
+  height: 1000px;
+  width:100%;
+  z-index: 5;
+  top: 0;
+  left: 0;
+}
+.login-box{
+  width: 500px;
+  height: 300px;
+  margin: 200px auto;
+  background-color: white;
+}
 .navbar{
   margin: 0;
   height: 10%;
 }
-
+//sidebar
 .left-box{
   float: left;
   position: absolute;
   width: 180px;
+  .sidebar{
+    margin: 15px;
+    .name-group{
+      .name{
+        opacity: 0.8;
+        font-size: 10px;
+      }
+      .name:hover{
+        width: 170px;
+      }
+    }
+    .title{
+      margin: 4px 0px;
+      box-shadow: 0px 2px 2px rgba(0,0,0,0.5);
+      font-size: 14px;
+    }
+    .XMZ{
+      color: white;
+      background-color: rgb(238,195,92);
+    }
+    .DWH{
+      background-color: rgb(173,228,229);
+      color: black;
+    }
+    .ZZB{
+      background-color: rgb(252,229,179);
+      color: black;
+    }
+  }
 }
+
+
+
+//mainbox
 .right-box{
-  position: relative;
-  margin-left: 180px;
+  position: fixed;
+  width: 1200px;
+  margin: 15px 10px 10px 180px;
+  background-color: rgba(248,248,249,1);
+  height: 600px;
+  min-width: 1200px;
+  .container{
+    margin: 0;
+    .q-box{
+      padding: 0px;
+      font-size: 5px;
+      .half-height{
+        margin: 5px;
+        padding: 10px;
+        height: 285px;
+        background-color: white;
+        overflow: scroll;
+        font-size: 10px;
+        .option{
+          margin: 10px 0;
+          .col-xs-9{
+            padding: 0px;
+            padding-left: 2px;
+          }
+        }
+      }
+      .full-height{
+        height: 580px;
+        background-color: white;
+        margin: 5px;
+        padding: 10px;
+        .option{
+          margin: 25px 0;
+        }
+      }
+    }
+  }
 }
+
