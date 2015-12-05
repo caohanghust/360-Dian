@@ -1,6 +1,11 @@
 import React from 'react';
 import question from './question';
+import mockdata from './mockdata';
+import Actions from './appAction';
 var Content = React.createClass({
+    getInitialState:function(){
+        return null;
+    },
     render:function(){
         return <div className="container">
             <div className="col-xs-3 q-box">
@@ -23,7 +28,6 @@ var Content = React.createClass({
 })
 var QuestionBox = React.createClass({
     render:function(){
-
         return <div className={this.props.height+'-height'}>
             <p className="q-title">{this.props.q.questionIndex+'.'+this.props.q.title}</p>
             <div className="input-group">
@@ -46,5 +50,9 @@ var QuestionBox = React.createClass({
         </div>
     }
 })
+
+var Tickets = function(name){
+
+}
 
 module.exports = Content;

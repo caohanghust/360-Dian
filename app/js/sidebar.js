@@ -1,9 +1,5 @@
-var React = require('react');
-var mockdata = {
-    XMZ:['曹航','夏天成','陈利飞','朱礼源','陈宽','郉铭哲','田斐菡','曹航','夏天成','陈利飞','朱礼源','陈宽','郉铭哲','田斐菡'],
-    DWH:['曹航','陈宽'],
-    ZZB:['曹航','夏天成','陈利飞']
-}
+import React from 'react';
+import mockdata from './mockdata';
 var Sidebar = React.createClass({
     getInitialState:function(){
       return {
@@ -53,7 +49,7 @@ var SidebarItem = React.createClass({
                             ? ''
                             :  <div className="list-group name-group">
                                 {
-                                    mockdata[this.props.type].map(function(item,index){
+                                    mockdata[this.props.type].nameList.map(function(item,index){
                                         return <a href="#" className="list-group-item fadeIn animated name">{item}(挪威组)</a>
                                     })
                                 }

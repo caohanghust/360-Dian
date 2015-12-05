@@ -6,15 +6,18 @@ var Login = React.createClass({
           showLogin:false
       }
     },
+    showLoginBox:function(){
+        this.setState({showLogin:this.state.showLogin?false:true});
+    },
     handleClick:function(){
-        this.setState({showLogin:true});
+        this.showLoginBox();
     },
     render:function(){
         return <div className="col-xs-offset-2">
             <button className="btn btn-default navbar-btn" onClick={this.handleClick}>登陆</button>
             {
                 this.state.showLogin
-                    ?<LoginBox/>
+                    ?<LoginBox showLoginBox={this.showLoginBox}/>
                     :''
             }
         </div>
@@ -23,7 +26,10 @@ var Login = React.createClass({
 
 var LoginBox = React.createClass({
     render:function(){
-        return <div className="curtain">
+        return <div>
+            <div className="curtain">
+
+            </div>
             <div className="login-box panel panel-info">
                 <div className="panel-heading">
                     登陆
@@ -41,7 +47,7 @@ var LoginBox = React.createClass({
                             <div className="input-group-addon">密码</div>
                             <input type="password" id="pw" className="form-control" placeholder="喻信密码"/>
                         </div>
-                        <button className='btn btn-default'>
+                        <button className='btn btn-default center-block' onClick={this.props.showLoginBox} >
                             登陆
                         </button>
                     </div>
@@ -49,7 +55,6 @@ var LoginBox = React.createClass({
                 <div className="panel-footer">
                     请用喻信账号密码登陆
                 </div>
-
             </div>
         </div>
     }

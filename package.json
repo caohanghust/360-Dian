@@ -19,6 +19,7 @@
     "qs": "^6.0.0",
     "react": "^0.14.2",
     "react-dom": "^0.14.2",
-    "react-router": "^1.0.0-rc3"
+    "react-router": "^1.0.0-rc3",
+    "reflux": "^0.3.0"
   }
 }
