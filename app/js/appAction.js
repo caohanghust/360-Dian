@@ -1,5 +1,7 @@
 import Reflux from 'reflux/src/index';
 var Actions = Reflux.createActions([
-    "login"
+    'login',
+    'changeMember',
+    'submitScore'
 ]);
 module.exports = Actions;

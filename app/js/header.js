@@ -1,4 +1,5 @@
-var React = require('react');
+import React from 'react';
+import Actions from './appAction';
 
 var Login = React.createClass({
     getInitialState:function(){
@@ -25,6 +26,11 @@ var Login = React.createClass({
 })
 
 var LoginBox = React.createClass({
+    handleClick:function(){
+        var username = this.refs.username.value;
+        var passwd = this.refs.passwd.value;
+        Actions.login(username,passwd,this.props.showLoginBox);
+    },
     render:function(){
         return <div>
             <div className="curtain">
@@ -38,16 +44,16 @@ var LoginBox = React.createClass({
                     <div className="form-group">
                         <div className="input-group">
                             <div className="input-group-addon">账号</div>
-                            <input type="text" id="account" className="form-control" placeholder="喻信账号"/>
+                            <input type="text" ref='username' className="form-control" placeholder="喻信账号"/>
                             <div className="input-group-addon">
-                                曹航
+                                Dian
                             </div>
                         </div>
                         <div className="input-group">
                             <div className="input-group-addon">密码</div>
-                            <input type="password" id="pw" className="form-control" placeholder="喻信密码"/>
+                            <input type="password" ref='passwd' className="form-control" placeholder="喻信密码"/>
                         </div>
-                        <button className='btn btn-default center-block' onClick={this.props.showLoginBox} >
+                        <button className='btn btn-default center-block' onClick={this.handleClick} >
                             登陆
                         </button>
                     </div>

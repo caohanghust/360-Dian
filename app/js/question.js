@@ -24,7 +24,7 @@ var question = {
                 score:5
             },
             {
-                optionIndex:1,
+                optionIndex:5,
                 content:'每周有效工作时间为低于10小时',
                 score:0
             },
