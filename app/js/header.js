@@ -14,7 +14,7 @@ var Login = React.createClass({
         this.showLoginBox();
     },
     render:function(){
-        return <div className="col-xs-offset-2">
+        return <div>
             <button className="btn btn-default navbar-btn" onClick={this.handleClick}>登陆</button>
             {
                 this.state.showLogin
@@ -66,6 +66,18 @@ var LoginBox = React.createClass({
     }
 })
 
+var ToolButton = React.createClass({
+    handleClick:function(e){
+        var contentType = e.target.getAttribute('data-type');
+        Actions.changeContent(contentType);
+    },
+    render:function(){
+        return <button className="btn btn-default navbar-btn" data-type={this.props.contentType} onClick={this.handleClick} >
+            {this.props.title}
+        </button>
+    }
+})
+
 var Header = React.createClass({
     render:function(){
         return <nav className="navbar navbar-default">
@@ -75,8 +87,13 @@ var Header = React.createClass({
                         360考核--Dian团队
                     </a>
                 </div>
-                <div className="navbar-right">
-                    <Login/>
+                <div className="tool-box">
+                    <Login />
+                    <ToolButton contentType={'mentor'} title={'导师专区'}/>
+                    <ToolButton contentType={'captain'} title={'队长专区'}/>
+                    <ToolButton contentType={'starList'} title={'明星榜'}/>
+                    <ToolButton contentType={'dataList'} title={'数据榜'}/>
+                    <ToolButton contentType={'360'} title={'360'}/>
                 </div>
             </div>
         </nav>

@@ -13,16 +13,23 @@
   top: 0;
   left: 0;
 }
-.login-box{
-  width: 40%;
-  background-color: white;
-  position: fixed;
-  left: 30%;
-  margin: auto;
-  z-index: 2;
-  .input-group{
-    margin: 20px auto;
-    padding: 0 50px;
+.tool-box{
+  overflow: hidden;
+  >*{
+    float: right;
+    margin-right: 20px;
+  }
+  .login-box{
+    width: 40%;
+    background-color: white;
+    position: fixed;
+    left: 30%;
+    margin: auto;
+    z-index: 2;
+    .input-group{
+      margin: 20px auto;
+      padding: 0 50px;
+    }
   }
 }
 .navbar{
@@ -72,6 +79,11 @@
   background-color: rgba(248,248,249,1);
   height: 600px;
   min-width: 1200px;
+  //StarList
+  .chart-box{
+    margin-left: 50px;
+    width: 1000px;
+  }
   .container{
     margin: 0;
     .group-title{
@@ -81,6 +93,9 @@
     .q-box{
       padding: 0px;
       font-size: 5px;
+      .input-group{
+        width: 100%;
+      }
       .half-height{
         margin: 5px;
         padding: 10px;

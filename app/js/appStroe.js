@@ -1,7 +1,7 @@
 import Reflux from 'reflux/src/index';
 import $ from 'jquery';
 import Actions from './appAction';
-import question from './question';
+import {question,groupInfo} from './question';
 
 var Store = Reflux.createStore({
     listenables:Actions,
@@ -38,6 +38,18 @@ var Store = Reflux.createStore({
     onChangeMember:function(user,group){
         this.state.nowUser = user;
         this.state.nowGroup = group;
+        var questionType = null;
+        if(groupInfo.XMZ.indexOf(group)!=-1){
+            questionType = 'XMZ';
+        }
+        if(groupInfo.DWH.indexOf(group)!=-1){
+            questionType = 'DWH';
+        }
+        this.state.nowQuestion = question[questionType];
+        this.trigger(this.state);
+    },
+    onChangeContent:function(type){
+        this.state.contentType = type;
         this.trigger(this.state);
     },
     getInitialState:function(){
@@ -46,8 +58,9 @@ var Store = Reflux.createStore({
             name:'Dian',
             username:null,
             isGroupPage:false,
-            nowQuestion:question.XMZ,
+            nowQuestion:question.DWH,
             nowGroup:null,
+            contentType:'',
             nowUser:{
                 name:'Dian',
                 score:[-1,-1,-1,-1,-1,-1,-1]
