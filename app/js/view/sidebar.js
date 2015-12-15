@@ -1,7 +1,7 @@
 import React from 'react';
-import Reflux from 'reflux/src/index';
-import Actions from './appAction';
-import Store from './appStroe';
+import Reflux from '../../../node_modules/reflux/src/index';
+import Actions from './../appAction';
+import Store from './../appStroe';
 
 var Sidebar = React.createClass({
     mixins:[Reflux.connect(Store,'store')],
@@ -14,6 +14,7 @@ var Sidebar = React.createClass({
         this.setState({unfold:this.state.unfold===group?null:group});
     },
     render:function(){
+        console.log(this.state.store);
         return <div className="sidebar">
             <div className="list-group">
                 {

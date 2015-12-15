@@ -8,14 +8,9 @@ import PersonPage from './view/personPage';
 import DataList from './view/dataList';
 
 var Content = React.createClass({
-    mixins:[Reflux.connect(Store,'store')],
-    shouldComponentUpdate:function(nextProps, nextState){
-        console.log('new %o , old %o',this.state.store,nextState.store);
-        return true;
-    },
     render:function(){
         var content = <StarList/>
-        switch (this.state.store.contentType){
+        switch (this.props.contentType){
             case '360':
                 content = <PersonPage/>
                 break;

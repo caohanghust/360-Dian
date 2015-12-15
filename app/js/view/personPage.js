@@ -2,13 +2,19 @@ import React from 'react';
 import Reflux from '../../../node_modules/reflux/src/index';
 import Actions from './../appAction';
 import Store from './../appStroe';
+import Sidebar from './sidebar';
 
 var personPage = React.createClass({
     mixins:[Reflux.connect(Store,'store')],
     render:function(){
-        return <div className="container">
-            <div className="row">
-                <h2 className="text-center">
+        return <div>
+            <div className="left-box">
+                <Sidebar/>
+            </div>
+            <div className="right-box">
+                <div className="container">
+                    <div className="row">
+                        <h2 className="text-center">
                     <span className="group-title">
                         {this.state.store.nowGroup
                             ?this.state.store.nowGroup+'组'
@@ -18,22 +24,24 @@ var personPage = React.createClass({
                     <span className="name-title">
                         {this.state.store.nowUser.name}
                     </span>
-                </h2>
-            </div>
-            <div className="col-xs-3 q-box">
-                <QuestionBox height='half' index={0} key='q-0' />
-                <QuestionBox height='half' index={3} key='q-3' />
-            </div>
-            <div className="col-xs-3 q-box">
-                <QuestionBox height='half' index={1} key='q-1' />
-                <QuestionBox height='half' index={4} key='q-4' />
-            </div>
-            <div className="col-xs-3 q-box">
-                <QuestionBox height='half' index={2} key='q-2' />
-                <QuestionBox height='half' index={5} key='q-5' />
-            </div>
-            <div className="col-xs-3 q-box">
-                <QuestionBox height='full' index={6} key='q-6' />
+                        </h2>
+                    </div>
+                    <div className="col-xs-3 q-box">
+                        <QuestionBox height='half' index={0} key='q-0' />
+                        <QuestionBox height='half' index={3} key='q-3' />
+                    </div>
+                    <div className="col-xs-3 q-box">
+                        <QuestionBox height='half' index={1} key='q-1' />
+                        <QuestionBox height='half' index={4} key='q-4' />
+                    </div>
+                    <div className="col-xs-3 q-box">
+                        <QuestionBox height='half' index={2} key='q-2' />
+                        <QuestionBox height='half' index={5} key='q-5' />
+                    </div>
+                    <div className="col-xs-3 q-box">
+                        <QuestionBox height='full' index={6} key='q-6' />
+                    </div>
+                </div>
             </div>
         </div>
     }

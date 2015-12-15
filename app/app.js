@@ -13,20 +13,22 @@ import { render } from 'react-dom';
 
 //依赖模块
 import Header from './js/header';
-import Sidebar from './js/sidebar';
 import Content from './js/content';
 
 var App = React.createClass({
+    getInitialState:function(){
+      return {
+          contentType:'360'
+      }
+    },
+    changeContentType:function(type){
+        this.setState({contentType:type});
+    },
     render:function(){
         return <div className="app">
-            <Header/>
+            <Header changeContentType={this.changeContentType}/>
             <div className="app-body">
-                <div className="left-box">
-                    <Sidebar/>
-                </div>
-                <div className="right-box">
-                    <Content/>
-                </div>
+                <Content contentType={this.state.contentType}/>
             </div>
         </div>
     }

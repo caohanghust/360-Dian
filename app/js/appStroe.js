@@ -5,6 +5,18 @@ import {question,groupInfo} from './question';
 
 var Store = Reflux.createStore({
     listenables:Actions,
+    state:{
+        group:[],
+        name:'Dian',
+        username:null,
+        isGroupPage:false,
+        nowQuestion:question.DWH,
+        nowGroup:null,
+        nowUser:{
+            name:'Dian',
+            score:[-1,-1,-1,-1,-1,-1,-1]
+        }
+    },
     onLogin:function(username,passwd,loginSuccess){
         $.getJSON('http://check360.sinaapp.com/index.php/main/login?username='+username+'&passwd='+passwd+'&callback=?',function(json){
             if(json.status==0){
@@ -48,24 +60,7 @@ var Store = Reflux.createStore({
         this.state.nowQuestion = question[questionType];
         this.trigger(this.state);
     },
-    onChangeContent:function(type){
-        this.state.contentType = type;
-        this.trigger(this.state);
-    },
     getInitialState:function(){
-        this.state = {
-            group:[],
-            name:'Dian',
-            username:null,
-            isGroupPage:false,
-            nowQuestion:question.DWH,
-            nowGroup:null,
-            contentType:'',
-            nowUser:{
-                name:'Dian',
-                score:[-1,-1,-1,-1,-1,-1,-1]
-            }
-        }
         return this.state;
     }
 })

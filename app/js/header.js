@@ -67,9 +67,9 @@ var LoginBox = React.createClass({
 })
 
 var ToolButton = React.createClass({
-    handleClick:function(e){
+    handleClick:function(e) {
         var contentType = e.target.getAttribute('data-type');
-        Actions.changeContent(contentType);
+        this.props.changeContentType(contentType);
     },
     render:function(){
         return <button className="btn btn-default navbar-btn" data-type={this.props.contentType} onClick={this.handleClick} >
@@ -89,11 +89,11 @@ var Header = React.createClass({
                 </div>
                 <div className="tool-box">
                     <Login />
-                    <ToolButton contentType={'mentor'} title={'导师专区'}/>
-                    <ToolButton contentType={'captain'} title={'队长专区'}/>
-                    <ToolButton contentType={'starList'} title={'明星榜'}/>
-                    <ToolButton contentType={'dataList'} title={'数据榜'}/>
-                    <ToolButton contentType={'360'} title={'360'}/>
+                    <ToolButton contentType={'mentor'} title={'导师专区'} changeContentType={this.props.changeContentType}/>
+                    <ToolButton contentType={'captain'} title={'队长专区'} changeContentType={this.props.changeContentType}/>
+                    <ToolButton contentType={'starList'} title={'明星榜'} changeContentType={this.props.changeContentType}/>
+                    <ToolButton contentType={'dataList'} title={'数据榜'} changeContentType={this.props.changeContentType}/>
+                    <ToolButton contentType={'360'} title={'360'} changeContentType={this.props.changeContentType}/>
                 </div>
             </div>
         </nav>
