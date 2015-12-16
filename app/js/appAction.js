@@ -2,6 +2,7 @@ import Reflux from 'reflux/src/index';
 var Actions = Reflux.createActions([
     'login',
     'changeMember',
-    'submitScore'
+    'submitScore',
+    'getDataList'
 ]);
 module.exports = Actions;

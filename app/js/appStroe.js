@@ -10,6 +10,14 @@ var Store = Reflux.createStore({
         name:'Dian',
         username:null,
         isGroupPage:false,
+        dataList:[{num:'1',average:'0',username:'dian',score:'0'},
+            {num:'2',average:'0',username:'dian',score:'0'},
+            {num:'3',average:'0',username:'dian',score:'0'},
+            {num:'4',average:'0',username:'dian',score:'0'},
+            {num:'5',average:'0',username:'dian',score:'0'},
+            {num:'6',average:'0',username:'dian',score:'0'},
+            {num:'7',average:'0',username:'dian',score:'0'}],
+        myscore:[0,0,0,0,0,0,0],
         nowQuestion:question.DWH,
         nowGroup:null,
         nowUser:{
@@ -57,8 +65,20 @@ var Store = Reflux.createStore({
         if(groupInfo.DWH.indexOf(group)!=-1){
             questionType = 'DWH';
         }
+        if(groupInfo.ZZB.indexOf(group)!=-1){
+            questionType = 'ZZB';
+        }
         this.state.nowQuestion = question[questionType];
         this.trigger(this.state);
+    },
+    onGetDataList:function(){
+       $.getJSON('http://check360.sinaapp.com/index.php/main/get_data_rank?username='+this.state.username+'&callback=?',function(json){
+           if(json.status==0){
+               this.state.dataList = json.result;
+               this.state.myscore = json.myscore;
+               this.trigger(this.state);
+           }
+       }.bind(this))
     },
     getInitialState:function(){
         return this.state;

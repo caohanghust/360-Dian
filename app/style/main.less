@@ -69,16 +69,12 @@
   }
 }
 
-
-
 //mainbox
 .right-box{
   position: fixed;
-  width: 1200px;
   margin: 15px 10px 10px 180px;
   background-color: rgba(248,248,249,1);
   height: 600px;
-  min-width: 1200px;
   //StarList
   .chart-box{
     margin-left: 50px;
@@ -95,6 +91,12 @@
       font-size: 5px;
       .input-group{
         width: 100%;
+      }
+      .success.half-height{
+        background-color: rgba(223,240,216,1);
+      }
+      .success.full-height{
+        background-color: rgba(223,240,216,1);
       }
       .half-height{
         margin: 5px;
@@ -124,3 +126,41 @@
   }
 }
 
+//datalist
+.datalist{
+  width: 980px;
+  height: 700px;
+  margin: auto;
+  box-shadow: 3px 3px 15px rgba(0,0,0,0.4);
+  .container{
+    padding: 20px;
+    width: 980px;
+    .data-box{
+      height: 200px;
+    }
+    .myscore{
+      height: 400px;
+    }
+    
+  }
+}
+
+//captain
+.captain{
+  width: 980px;
+  height: 700px;
+  margin: auto;
+  box-shadow: 3px 3px 15px rgba(0,0,0,0.4);
+  .container{
+    width: 100%;
+    .impression{
+      height: 200px ;
+      overflow-y: scroll;
+      .person-box{
+        margin: 10px 0;
+        box-shadow: 3px 3px 15px rgba(0,0,0,0.4);
+      }
+    }
+  }
+
+}

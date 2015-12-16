@@ -6,6 +6,7 @@ import Store from './appStroe';
 import StarList from './view/starList';
 import PersonPage from './view/personPage';
 import DataList from './view/dataList';
+import Captain from './view/captain';
 
 var Content = React.createClass({
     render:function(){
@@ -19,6 +20,9 @@ var Content = React.createClass({
                 break;
             case 'dataList':
                 content = <DataList/>
+                break;
+            case 'captain':
+                content = <Captain/>
                 break;
             default :
                 content = <div>404 NOT FOUND</div>;

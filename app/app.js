@@ -18,7 +18,7 @@ import Content from './js/content';
 var App = React.createClass({
     getInitialState:function(){
       return {
-          contentType:'360'
+          contentType:'captain'
       }
     },
     changeContentType:function(type){

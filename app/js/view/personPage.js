@@ -57,7 +57,8 @@ var QuestionBox = React.createClass({
     render:function(){
         var question = this.state.store.nowQuestion[this.props.index];
         var answer = this.state.store.nowUser.score[this.props.index];
-        var questionContent = question?(<div className={this.props.height+'-height'}>
+        var completed = answer==-1?'':'success';
+        var questionContent = question?(<div className={this.props.height+'-height '+completed}>
             <p className="q-title">{question.questionIndex+'.'+question.title}</p>
             <div className="input-group">
                 {
