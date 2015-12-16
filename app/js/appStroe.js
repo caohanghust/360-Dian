@@ -9,6 +9,7 @@ var Store = Reflux.createStore({
         group:[],
         name:'Dian',
         username:null,
+        type:0,
         isGroupPage:false,
         dataList:[{num:'1',average:'0',username:'dian',score:'0'},
             {num:'2',average:'0',username:'dian',score:'0'},
@@ -18,6 +19,7 @@ var Store = Reflux.createStore({
             {num:'6',average:'0',username:'dian',score:'0'},
             {num:'7',average:'0',username:'dian',score:'0'}],
         myscore:[0,0,0,0,0,0,0],
+        impression:{group_name:'dian',members:[]},
         nowQuestion:question.DWH,
         nowGroup:null,
         nowUser:{
@@ -28,7 +30,7 @@ var Store = Reflux.createStore({
     onLogin:function(username,passwd,loginSuccess){
         $.getJSON('http://check360.sinaapp.com/index.php/main/login?username='+username+'&passwd='+passwd+'&callback=?',function(json){
             if(json.status==0){
-                console.log(json);
+                this.state.type = json.type;
                 this.state.group = json.result.group;
                 this.state.username = json.result.username;
                 this.state.name = json.result.name;
@@ -79,6 +81,21 @@ var Store = Reflux.createStore({
                this.trigger(this.state);
            }
        }.bind(this))
+    },
+    onGetGroupData:function(group_name){
+        $.getJSON('http://check360.sinaapp.com/index.php/main/get_group_data?group_name='+group_name+'&username='+this.state.username+'&callback=?',function(json){
+            if(json.status==0){
+                this.state.impression = json.result;
+                this.trigger(this.state);
+            }
+        }.bind(this))
+    },
+    onSubmitImpression:function(to_username,impression_score){
+        $.getJSON('http://check360.sinaapp.com/index.php/main/update_impression_score?group='+this.state.impression.group_name+'&from_username='+this.state.username+'&to_username='+to_username+'&score='+impression_score+'&callback=?',function(json){
+            if(json.status!=0){
+                alert('提交失败');
+            }
+        })
     },
     getInitialState:function(){
         return this.state;

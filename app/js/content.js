@@ -22,7 +22,7 @@ var Content = React.createClass({
                 content = <DataList/>
                 break;
             case 'captain':
-                content = <Captain/>
+                content = <Captain changeContentType={this.props.changeContentType}/>
                 break;
             default :
                 content = <div>404 NOT FOUND</div>;

@@ -562,9 +562,9 @@ var question = {
         },]
 }
 var groupInfo = {
-    XMZ:['norway'],
-    DWH:['tech'],
-    ZZB:['seed12'],
+    XMZ:['norway','tzfx','smartsan','uflt','win32','winmac','xc','mobile','yrxd','svti'],
+    DWH:['tech','public','admin'],
+    ZZB:['seed12','seed13'],
 }
 
 module.exports.question = question;

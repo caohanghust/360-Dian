@@ -3,6 +3,8 @@ var Actions = Reflux.createActions([
     'login',
     'changeMember',
     'submitScore',
-    'getDataList'
+    'getDataList',
+    'getGroupData',
+    'submitImpression',
 ]);
 module.exports = Actions;

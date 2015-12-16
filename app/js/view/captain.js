@@ -5,28 +5,72 @@ import Store from './../appStroe';
 import Highcharts from '../../../node_modules/react-highcharts/dist/bundle/highcharts';
 
 var Person = React.createClass({
+    getInitialState:function(){
+        return {
+            completed:this.props.data.impression_score!=0?true:false,
+        }
+    },
+    handleChange:function(e){
+        var value = e.target.value;
+        if(value.length!=0){
+            this.setState({completed:true})
+        }
+        else{
+            value = '0';
+        }
+        Actions.submitImpression(this.props.data.username,value);
+    },
     render:function(){
-        return <div className="person-box">
+        var success = (this.state.completed?'has-success':'');
+        return <div className={"person-box form-group "+success}>
             <div className="input-group">
-                <span className="input-group-addon">曹航</span>
-                <input type="text" className="form-control"/>
+                <span className="input-group-addon">{this.props.data.name}</span>
+                <input type="text"
+                       className="form-control success"
+                       placeholder={this.props.data.impression_score}
+                       onBlur={this.handleChange} />
             </div>
         </div>
     }
 })
-
 var Captain = React.createClass({
+    mixins:[Reflux.connect(Store,'store')],
+    handleClick:function(e){
+        var group_name = e.target.getAttribute('data-group');
+        Actions.getGroupData(group_name);
+    },
     render:function(){
-        var data = [0,0,0,0,0,0,0,0];
+        var impression = this.state.store.impression;
+        var nameList = [];
+        var scores = {
+            q0:[],
+            q1:[],
+            q2:[],
+            q3:[],
+            q4:[],
+            q5:[],
+            q6:[]
+        };
+        impression.members.map(function(item){
+            nameList.push(item.name);
+            scores.q0.push(item.score[0]);
+            scores.q1.push(item.score[1]);
+            scores.q2.push(item.score[2]);
+            scores.q3.push(item.score[3]);
+            scores.q4.push(item.score[4]);
+            scores.q5.push(item.score[5]);
+            scores.q6.push(item.score[6]);
+        })
+        console.log('namelist:%o,scores:%o',nameList,scores);
         var config = {
             chart: {
                 type: 'column'
             },
             title: {
-                text: '挪威组'
+                text: '360项目组详细得分',
             },
             xAxis: {
-                categories: ['曹航', '夏天成', '陈利飞', '朱礼源', '陈宽']
+                categories: nameList,
             },
             yAxis: {
                 min: 0,
@@ -70,25 +114,25 @@ var Captain = React.createClass({
             },
             series: [{
                 name: '时间',
-                data: [5, 3, 4, 7, 2]
+                data: scores.q0,
             }, {
                 name: '质量',
-                data: [2, 2, 3, 2, 1]
+                data: scores.q1,
             }, {
                 name: '主动性',
-                data: [3, 4, 4, 2, 5]
+                data: scores.q2,
             },{
                 name: '责任心',
-                data: [5, 3, 4, 7, 2]
+                data: scores.q3,
             }, {
                 name: '影响力',
-                data: [2, 2, 3, 2, 1]
+                data: scores.q4,
             }, {
                 name: '文化活动',
-                data: [3, 4, 4, 2, 5]
+                data: scores.q5,
             },{
                 name: '技术贡献',
-                data: [3, 4, 4, 2, 5]
+                data: scores.q6,
             }]
         };
         return <div>
@@ -103,20 +147,26 @@ var Captain = React.createClass({
                                 项目组
                             </h3>
                             <div className="list-group">
-                                <a href='#' className="list-group-item ">挪威组</a>
-                                <a href='#' className="list-group-item ">华三组</a>
-                                <a href='#' className="list-group-item ">迅测组</a>
-                                <a href='#' className="list-group-item ">抓包组</a>
+                                <a href='#' className="list-group-item " data-group='tzfx' onClick={this.handleClick}>特征分析组</a>
+                                <a href='#' className="list-group-item " data-group='smartsan' onClick={this.handleClick}>smartSan组</a>
+                                <a href='#' className="list-group-item " data-group='norway' onClick={this.handleClick}>挪威组</a>
+                                <a href='#' className="list-group-item " data-group='uflt' onClick={this.handleClick}>uflt组</a>
+                                <a href='#' className="list-group-item " data-group='win32' onClick={this.handleClick}>win32组</a>
+                                <a href='#' className="list-group-item " data-group='winmac' onClick={this.handleClick}>winmac组</a>
+                                <a href='#' className="list-group-item " data-group='xc' onClick={this.handleClick}>迅测组</a>
+                                <a href='#' className="list-group-item " data-group='mobile' onClick={this.handleClick}>移动组</a>
+                                <a href='#' className="list-group-item " data-group='yrxd' onClick={this.handleClick}>悦然心动组</a>
+                                <a href='#' className="list-group-item " data-group='svti' onClick={this.handleClick}>svti组</a>
                             </div>
                         </div>
                     </div>
                     <div className="col-xs-10">
                         <div className="impression">
-                            <h3 className="text-center">挪威组</h3>
+                            <h3 className="text-center">{impression.group_name}组</h3>
                             {
-                                data.map(function(){
+                                impression.members.map(function(item){
                                     return <div className='col-xs-3'>
-                                        <Person/>
+                                        <Person key={item.username} data={item}/>
                                     </div>
                                 })
                             }

@@ -1,5 +1,7 @@
 import React from 'react';
 import Actions from './appAction';
+import Reflux from 'reflux/src/index';
+import Store from './appStroe';
 
 var Login = React.createClass({
     getInitialState:function(){
@@ -67,9 +69,19 @@ var LoginBox = React.createClass({
 })
 
 var ToolButton = React.createClass({
+    mixins:[Reflux.connect(Store,'store')],
     handleClick:function(e) {
         var contentType = e.target.getAttribute('data-type');
-        this.props.changeContentType(contentType);
+        //控制权限
+        if(this.state.store.type==0){
+            if(contentType=='mentor'||contentType=='captain'){
+                alert('您无此权限');
+            }else{
+                this.props.changeContentType(contentType);
+            }
+        }else{
+            this.props.changeContentType(contentType);
+        }
     },
     render:function(){
         return <button className="btn btn-default navbar-btn" data-type={this.props.contentType} onClick={this.handleClick} >
