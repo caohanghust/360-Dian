@@ -7,7 +7,7 @@ import Sidebar from './sidebar';
 var personPage = React.createClass({
     mixins:[Reflux.connect(Store,'store')],
     render:function(){
-        return <div>
+        return <div className='zoomInRight animated'>
             <div className="left-box">
                 <Sidebar/>
             </div>

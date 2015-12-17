@@ -46,7 +46,7 @@ var DataList = React.createClass({
                 data: myscore,
             }]
         };
-        var content = <div>
+        var content = <div className='swing animated'>
             <h2 className="text-center">
                 Dian团队大数据
             </h2>

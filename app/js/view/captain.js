@@ -135,7 +135,7 @@ var Captain = React.createClass({
                 data: scores.q6,
             }]
         };
-        return <div>
+        return <div className='flipInX animated'>
             <h2 className="text-center">
                 队长印象分
             </h2>

@@ -37,6 +37,8 @@ var Store = Reflux.createStore({
                 this.state.unfold = json.result.group[0].group_name;
                 this.trigger(this.state);
                 loginSuccess();
+            }else{
+                alert('密码错误')
             }
         }.bind(this))
     },

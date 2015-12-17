@@ -7,6 +7,7 @@ import StarList from './view/starList';
 import PersonPage from './view/personPage';
 import DataList from './view/dataList';
 import Captain from './view/captain';
+import Mentor from './view/mentor';
 
 var Content = React.createClass({
     render:function(){
@@ -22,7 +23,10 @@ var Content = React.createClass({
                 content = <DataList/>
                 break;
             case 'captain':
-                content = <Captain changeContentType={this.props.changeContentType}/>
+                content = <Captain/>
+                break;
+            case 'mentor':
+                content = <Mentor/>
                 break;
             default :
                 content = <div>404 NOT FOUND</div>;

@@ -4,6 +4,7 @@ import Reflux from 'reflux/src/index';
 import Store from './appStroe';
 
 var Login = React.createClass({
+    mixins:[Reflux.connect(Store,'store')],
     getInitialState:function(){
       return {
           showLogin:false
@@ -17,7 +18,9 @@ var Login = React.createClass({
     },
     render:function(){
         return <div>
-            <button className="btn btn-default navbar-btn" onClick={this.handleClick}>登陆</button>
+            <button className="btn btn-default navbar-btn" onClick={this.handleClick}>
+                {this.state.store.username!=null?decodeURI(this.state.store.name):'登陆'}
+            </button>
             {
                 this.state.showLogin
                     ?<LoginBox showLoginBox={this.showLoginBox}/>
@@ -38,7 +41,7 @@ var LoginBox = React.createClass({
             <div className="curtain">
 
             </div>
-            <div className="login-box panel panel-info">
+            <div className="login-box panel panel-info zoomIn animated">
                 <div className="panel-heading">
                     登陆
                 </div>
@@ -73,14 +76,23 @@ var ToolButton = React.createClass({
     handleClick:function(e) {
         var contentType = e.target.getAttribute('data-type');
         //控制权限
-        if(this.state.store.type==0){
-            if(contentType=='mentor'||contentType=='captain'){
-                alert('您无此权限');
-            }else{
-                this.props.changeContentType(contentType);
-            }
-        }else{
-            this.props.changeContentType(contentType);
+        switch (contentType){
+            case 'captain':
+                if(this.state.store.type==1){
+                    this.props.changeContentType(contentType)
+                }else{
+                    alert('您无此权限');
+                }
+                break;
+            case 'mentor':
+                if(this.state.store.type==2){
+                    this.props.changeContentType(contentType)
+                }else{
+                    alert('您无此权限');
+                }
+                break;
+            default :
+                this.props.changeContentType(contentType)
         }
     },
     render:function(){

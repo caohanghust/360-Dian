@@ -9,7 +9,6 @@ require('./style/main.less');
 
 import React from 'react';
 import { render } from 'react-dom';
-//import { Router , Route , Link} from 'react-router';
 
 //依赖模块
 import Header from './js/header';

@@ -11,7 +11,7 @@ var StarList = React.createClass({
                 type: 'column'
             },
             title: {
-                text: 'Stacked column chart'
+                text: '2015Dian团队360考核'
             },
             xAxis: {
                 categories: ['曹航', '夏天成', '陈利飞', '朱礼源', '陈宽']
@@ -67,9 +67,9 @@ var StarList = React.createClass({
                 data: [3, 4, 4, 2, 5]
             }]
         };
-        return <div className="stat-list">
+        return <div className="stat-list rubberBand animated">
             <h2 className="text-center">
-                Dian团队明星榜
+                明星榜
             </h2>
             <div className="chart-box">
                 <Highcharts config={config}/>

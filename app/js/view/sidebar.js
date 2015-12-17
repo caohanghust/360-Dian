@@ -14,7 +14,6 @@ var Sidebar = React.createClass({
         this.setState({unfold:this.state.unfold===group?null:group});
     },
     render:function(){
-        console.log(this.state.store);
         return <div className="sidebar">
             <div className="list-group">
                 {
@@ -55,16 +54,34 @@ var SidebarItem = React.createClass({
                         :  <div className="list-group name-group">
                         {
                             this.props.group.members.map(function(item,index){
-                                var completed = true;
-                                item.score.map(function(item){
-                                    if(item==-1){
-                                        completed = false;
+                                var group_name = this.props.group.group_name;
+                                var completed = false;
+                                if(group_name=='tech'){
+                                    var counter = 0 ;
+                                    for(var i=0;i<5;i++){
+                                        if(item.score[i]!=-1){
+                                            counter++
+                                        }
                                     }
-                                })
+                                    if(counter==5){
+                                        completed=true;
+                                    }
+                                }else{
+                                    var counter = 0 ;
+                                    for(var i=0;i<7;i++){
+                                        if(item.score[i]!=-1){
+                                            counter++
+                                        }
+                                    }
+                                    if(counter==7){
+                                        completed=true;
+                                    }
+                                }
                                 return <a href="#"
                                           className={"list-group-item fadeIn animated name "}
                                           onClick={this.changeMember}
                                           onMouseEnter={this.changeMember}
+                                          key={item.username}
                                           data-index={index}>
                                     {item.name}
                                     {
