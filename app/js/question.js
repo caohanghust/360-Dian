@@ -562,7 +562,7 @@ var question = {
         },]
 }
 var groupInfo = {
-    XMZ:['norway','tzfx','smartsan','uflt','win32','winmac','xc','mobile','yrxd','svti'],
+    XMZ:['norway','tzfx','smartsan','uflt','win32','winmac','xc','mobile','yrxd','svti','finance'],
     DWH:['tech','public','admin'],
     ZZB:['seed12','seed13'],
 }

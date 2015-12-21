@@ -6,5 +6,6 @@ var Actions = Reflux.createActions([
     'getDataList',
     'getGroupData',
     'submitImpression',
+    'getStarList'
 ]);
 module.exports = Actions;

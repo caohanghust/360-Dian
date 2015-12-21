@@ -7,12 +7,26 @@
   position: absolute;
   opacity: 0.5;
   background-color: black;
-  height: 1000px;
-  width:100%;
+  height: 2000px;
+  width:3000px;
   z-index: 1;
-  top: 0;
+  top: -200px;
   left: 0;
 }
+
+.introduce{
+  z-index: 2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -380px;
+  margin-left: -240px;
+  td{
+    padding: 5px 10px;
+  }
+}
+
+
 .tool-box{
   overflow: hidden;
   >*{
@@ -49,6 +63,23 @@
         font-size: 10px;
       }
     }
+    .captain_impression{
+      position: fixed;
+      width: 600px;
+      z-index: 2;
+      background: white;
+      top: 200px;
+      left: 300px;
+      .impression_box{
+        margin-top: 40px;
+        input{
+          margin-top: 10px;
+        }
+        button{
+          margin: 10px 50px;
+        }
+      }
+    }
     .title{
       margin: 4px 0px;
       box-shadow: 0px 2px 2px rgba(0,0,0,0.5);
@@ -66,6 +97,14 @@
       background-color: rgb(252,229,179);
       color: black;
     }
+    .item3{
+      background-color: #5cb85c;
+      color: white;
+    }
+    .item4{
+      background-color: #5bc0de;
+      color: white;
+    }
   }
 }
 
@@ -74,17 +113,18 @@
   position: fixed;
   margin: 15px 10px 10px 180px;
   background-color: rgba(248,248,249,1);
-  height: 600px;
+  height: 650px;
   //StarList
   .chart-box{
     margin-left: 50px;
     width: 1000px;
   }
   .container{
+    width: 1200px;
     margin: 0;
-    .group-title{
-      font-size: 20px;
-      margin: 20px;
+      .group-title{
+        font-size: 20px;
+        margin: 20px;
     }
     .q-box{
       padding: 0px;

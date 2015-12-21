@@ -5,7 +5,21 @@ import Store from './../appStroe';
 import Highcharts from '../../../node_modules/react-highcharts/dist/bundle/highcharts';
 
 var StarList = React.createClass({
+    mixins:[Reflux.connect(Store,'store')],
+    componentDidMount:function(){
+        Actions.getStarList();
+    },
     render:function(){
+        var nameList = [];
+        var xmz_scores = [];
+        var dwh_scores = [];
+
+        this.state.store.starList.map(function(item){
+            nameList.push(item.name);
+            xmz_scores.push(item.xmz_score);
+            dwh_scores.push(item.dwh_score);
+        })
+        console.log(nameList);
         var config = {
             chart: {
                 type: 'column'
@@ -14,7 +28,7 @@ var StarList = React.createClass({
                 text: '2015Dian团队360考核'
             },
             xAxis: {
-                categories: ['曹航', '夏天成', '陈利飞', '朱礼源', '陈宽']
+                categories: nameList
             },
             yAxis: {
                 min: 0,
@@ -58,13 +72,10 @@ var StarList = React.createClass({
             },
             series: [{
                 name: '项目组',
-                data: [5, 3, 4, 7, 2]
+                data: xmz_scores,
             }, {
                 name: '队委会',
-                data: [2, 2, 3, 2, 1]
-            }, {
-                name: '队长导师印象分',
-                data: [3, 4, 4, 2, 5]
+                data: dwh_scores,
             }]
         };
         return <div className="stat-list rubberBand animated">

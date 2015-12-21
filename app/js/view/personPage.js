@@ -25,6 +25,9 @@ var personPage = React.createClass({
                         {this.state.store.nowUser.name}
                     </span>
                         </h2>
+                        <h5 className="text-center">
+                            如无共事过直接跳过即可
+                        </h5>
                     </div>
                     <div className="col-xs-3 q-box">
                         <QuestionBox height='half' index={0} key='q-0' />

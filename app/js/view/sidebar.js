@@ -7,11 +7,28 @@ var Sidebar = React.createClass({
     mixins:[Reflux.connect(Store,'store')],
     getInitialState:function(){
         return {
-            unfold:null
+            unfold:null,
+            captain_impression:false
         }
     },
     foldController:function(group){
         this.setState({unfold:this.state.unfold===group?null:group});
+    },
+    submitCaptainImpression:function(){
+        var impression_score = parseInt(this.refs.impression.value);
+        if(impression_score){
+            if(impression_score<=0||impression_score>100){
+                alert('分值有误，请重新输入');
+            }else{
+                Actions.submitImpression('qingcheng',impression_score);
+                this.setState({captain_impression:false});
+            }
+        }else{
+            alert('分值有误，请重新输入');
+        }
+    },
+    showCaptainBox:function(){
+       this.setState({captain_impression:true});
     },
     render:function(){
         return <div className="sidebar">
@@ -25,7 +42,51 @@ var Sidebar = React.createClass({
                                             index={index}/>
                     }.bind(this))
                 }
+                <a className="list-group-item title item4" onClick={this.showCaptainBox}>
+                    队长印象分
+                </a>
             </div>
+            {
+                this.state.captain_impression
+                    ?<div>
+                     <div className="curtain">
+                     </div>
+                     <div className='captain_impression'>
+                        <div className="panel panel-info">
+                            <div className="panel-heading">
+                                您对本届队长的印象分是多少？
+                            </div>
+                            <div className="panel-body">
+                                <div className="row">
+                                    <div className="col-xs-7">
+                                        <img src="./img/captain.png" alt="江涛"/>
+                                    </div>
+                                    <div className="col-xs-5">
+                                        <h3>本届队长</h3>
+                                        <p>姓名：江涛</p>
+                                        <p>喻信ID：qingchen</p>
+                                        <p>项目组：svti</p>
+                                        <p>2011年加入团队</p>
+                                        <p>2010级种子班成员</p>
+                                        <p>2014级研究生</p>
+                                        <div className="form-group impression_box">
+                                            <label for="impression">你对本届队长的印象分为：</label>
+                                            <div className="input-group">
+                                                <input type="text" id='impression' ref='impression' className='form-control' placeholder='满分100'/>
+                                            </div>
+                                            <button className="btn btn-default" onClick={this.submitCaptainImpression}>
+                                                提交
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                     </div>
+                </div>
+                    :''
+            }
         </div>
     }
 })

@@ -151,7 +151,6 @@ var Captain = React.createClass({
                                 <a href='#' className="list-group-item " data-group='smartsan' onClick={this.handleClick}>smartSan组</a>
                                 <a href='#' className="list-group-item " data-group='norway' onClick={this.handleClick}>挪威组</a>
                                 <a href='#' className="list-group-item " data-group='uflt' onClick={this.handleClick}>uflt组</a>
-                                <a href='#' className="list-group-item " data-group='win32' onClick={this.handleClick}>win32组</a>
                                 <a href='#' className="list-group-item " data-group='winmac' onClick={this.handleClick}>winmac组</a>
                                 <a href='#' className="list-group-item " data-group='xc' onClick={this.handleClick}>迅测组</a>
                                 <a href='#' className="list-group-item " data-group='mobile' onClick={this.handleClick}>移动组</a>
@@ -163,6 +162,9 @@ var Captain = React.createClass({
                     <div className="col-xs-10">
                         <div className="impression">
                             <h3 className="text-center">{impression.group_name}组</h3>
+                            <h5 className="text-center">
+                                请队长根据印象给所有队员打分（百分制）
+                            </h5>
                             {
                                 impression.members.map(function(item){
                                     return <div className='col-xs-3'>

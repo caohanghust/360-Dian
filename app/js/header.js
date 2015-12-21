@@ -18,9 +18,12 @@ var Login = React.createClass({
     },
     render:function(){
         return <div>
-            <button className="btn btn-default navbar-btn" onClick={this.handleClick}>
-                {this.state.store.username!=null?decodeURI(this.state.store.name):'登陆'}
-            </button>
+            {
+                this.state.store.username!=null
+                    ?<a className='navbar-brand'>欢迎你,{decodeURI(this.state.store.name)}</a>
+                    :<button className="btn btn-default navbar-btn" onClick={this.handleClick}>登陆</button>
+            }
+
             {
                 this.state.showLogin
                     ?<LoginBox showLoginBox={this.showLoginBox}/>

@@ -2,6 +2,7 @@ import Reflux from 'reflux/src/index';
 import $ from 'jquery';
 import Actions from './appAction';
 import {question,groupInfo} from './question';
+import md5 from 'md5';
 
 var Store = Reflux.createStore({
     listenables:Actions,
@@ -18,6 +19,11 @@ var Store = Reflux.createStore({
             {num:'5',average:'0',username:'dian',score:'0'},
             {num:'6',average:'0',username:'dian',score:'0'},
             {num:'7',average:'0',username:'dian',score:'0'}],
+        starList:[{username:'dian',name:'dian',dwh_score:20,xmz_score:80},
+            {username:'dian',name:'dian',dwh_score:20,xmz_score:80},
+            {username:'dian',name:'dian',dwh_score:20,xmz_score:80},
+            {username:'dian',name:'dian',dwh_score:20,xmz_score:80},
+            {username:'dian',name:'dian',dwh_score:20,xmz_score:80},],
         myscore:[0,0,0,0,0,0,0],
         impression:{group_name:'dian',members:[]},
         nowQuestion:question.DWH,
@@ -28,7 +34,10 @@ var Store = Reflux.createStore({
         }
     },
     onLogin:function(username,passwd,loginSuccess){
-        $.getJSON('http://check360.sinaapp.com/index.php/main/login?username='+username+'&passwd='+passwd+'&callback=?',function(json){
+        var args = 'username='+username+'&passwd='+passwd;
+        var code = getCode(args);
+        args += '&code='+code;
+        $.getJSON('http://check360.sinaapp.com/index.php/main/login?'+args+'&callback=?',function(json){
             if(json.status==0){
                 this.state.type = json.type;
                 this.state.group = json.result.group;
@@ -46,13 +55,12 @@ var Store = Reflux.createStore({
         var from_username = this.state.username;
         var to_username = this.state.nowUser.username;
         var group = this.state.nowGroup;
-        $.getJSON('http://check360.sinaapp.com/index.php/main/update_score?callback=?',{
-            from_username:from_username,
-            to_username:to_username,
-            group:group,
-            num:num,
-            score:score
-        },function(json){
+
+        var args = 'from_username='+from_username+'&to_username='+to_username+'&group='+group+'&num='+num+'&score='+score;
+        var code = getCode(args);
+        args += '&code='+code;
+
+        $.getJSON('http://check360.sinaapp.com/index.php/main/update_score?'+args+'&callback=?',function(json){
             if(json.status==0){
                 this.state.nowUser.score[parseInt(num)-1]=score;
                 this.trigger(this.state);
@@ -76,7 +84,11 @@ var Store = Reflux.createStore({
         this.trigger(this.state);
     },
     onGetDataList:function(){
-       $.getJSON('http://check360.sinaapp.com/index.php/main/get_data_rank?username='+this.state.username+'&callback=?',function(json){
+        var args = 'username='+this.state.username;
+        var code = getCode(args);
+        args += '&code='+code;
+
+       $.getJSON('http://check360.sinaapp.com/index.php/main/get_data_rank?'+args+'&callback=?',function(json){
            if(json.status==0){
                this.state.dataList = json.result;
                this.state.myscore = json.myscore;
@@ -85,7 +97,10 @@ var Store = Reflux.createStore({
        }.bind(this))
     },
     onGetGroupData:function(group_name){
-        $.getJSON('http://check360.sinaapp.com/index.php/main/get_group_data?group_name='+group_name+'&username='+this.state.username+'&callback=?',function(json){
+        var args = 'group_name='+group_name+'&username='+this.state.username;
+        var code = getCode(args);
+        args += '&code='+code;
+        $.getJSON('http://check360.sinaapp.com/index.php/main/get_group_data?'+args+'&callback=?',function(json){
             if(json.status==0){
                 this.state.impression = json.result;
                 this.trigger(this.state);
@@ -93,15 +108,32 @@ var Store = Reflux.createStore({
         }.bind(this))
     },
     onSubmitImpression:function(to_username,impression_score){
-        $.getJSON('http://check360.sinaapp.com/index.php/main/update_impression_score?group='+this.state.impression.group_name+'&from_username='+this.state.username+'&to_username='+to_username+'&score='+impression_score+'&callback=?',function(json){
+        var args = 'from_username='+this.state.username+'&to_username='+to_username+'&score='+impression_score;
+        var code = getCode(args);
+        args += '&code='+code;
+        $.getJSON('http://check360.sinaapp.com/index.php/main/update_impression_score?'+args+'&callback=?',function(json){
             if(json.status!=0){
                 alert('提交失败');
             }
         })
     },
+    onGetStarList:function(){
+        $.getJSON('http://check360.sinaapp.com/index.php/main/get_stars?callback=?',function(json){
+            if(json.status==0){
+                this.state.starList = json.result;
+                this.trigger(this.state);
+            }
+        }.bind(this))
+    },
     getInitialState:function(){
         return this.state;
     }
 })
+
+function getCode(args){
+    var key = 'dian';
+    var code = md5(args+key).substr(0,5);
+    return code;
+}
 
 module.exports = Store;

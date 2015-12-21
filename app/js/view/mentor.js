@@ -151,18 +151,25 @@ var Mentor = React.createClass({
                                 <a href='#' className="list-group-item " data-group='smartsan' onClick={this.handleClick}>smartSan组</a>
                                 <a href='#' className="list-group-item " data-group='norway' onClick={this.handleClick}>挪威组</a>
                                 <a href='#' className="list-group-item " data-group='uflt' onClick={this.handleClick}>uflt组</a>
-                                <a href='#' className="list-group-item " data-group='win32' onClick={this.handleClick}>win32组</a>
                                 <a href='#' className="list-group-item " data-group='winmac' onClick={this.handleClick}>winmac组</a>
                                 <a href='#' className="list-group-item " data-group='xc' onClick={this.handleClick}>迅测组</a>
                                 <a href='#' className="list-group-item " data-group='mobile' onClick={this.handleClick}>移动组</a>
                                 <a href='#' className="list-group-item " data-group='yrxd' onClick={this.handleClick}>悦然心动组</a>
                                 <a href='#' className="list-group-item " data-group='svti' onClick={this.handleClick}>svti组</a>
+
+                                <a href='#' className="list-group-item " data-group='tech' onClick={this.handleClick}>技术部</a>
+                                <a href='#' className="list-group-item " data-group='public' onClick={this.handleClick}>外联部</a>
+                                <a href='#' className="list-group-item " data-group='admin' onClick={this.handleClick}>行政部</a>
+
+                                <a href='#' className="list-group-item " data-group='finance' onClick={this.handleClick}>财务组</a>
+
                             </div>
                         </div>
                     </div>
                     <div className="col-xs-10">
                         <div className="impression">
-                            <h3 className="text-center">印象分:{impression.group_name}组</h3>
+                            <h3 className="text-center">{impression.group_name}组</h3>
+                            <h5 className="text-center">请导师根据印象给各组组长打分（百分制）</h5>
                             {
                                 impression.members.map(function(item){
                                     if(item.identity == 0){
