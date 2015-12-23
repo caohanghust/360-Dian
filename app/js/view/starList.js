@@ -19,7 +19,6 @@ var StarList = React.createClass({
             xmz_scores.push(item.xmz_score);
             dwh_scores.push(item.dwh_score);
         })
-        console.log(nameList);
         var config = {
             chart: {
                 type: 'column'

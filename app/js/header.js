@@ -7,7 +7,7 @@ var Login = React.createClass({
     mixins:[Reflux.connect(Store,'store')],
     getInitialState:function(){
       return {
-          showLogin:false
+          showLogin:false,
       }
     },
     showLoginBox:function(){
@@ -26,7 +26,7 @@ var Login = React.createClass({
 
             {
                 this.state.showLogin
-                    ?<LoginBox showLoginBox={this.showLoginBox}/>
+                    ?<LoginBox showLoginBox={this.showLoginBox} wait={this.state.store.wait}/>
                     :''
             }
         </div>
@@ -37,6 +37,7 @@ var LoginBox = React.createClass({
     handleClick:function(){
         var username = this.refs.username.value;
         var passwd = this.refs.passwd.value;
+        this.setState({wait:true});
         Actions.login(username,passwd,this.props.showLoginBox);
     },
     render:function(){
@@ -62,7 +63,11 @@ var LoginBox = React.createClass({
                             <input type="password" ref='passwd' className="form-control" placeholder="喻信密码"/>
                         </div>
                         <button className='btn btn-default center-block' onClick={this.handleClick} >
-                            登陆
+                            {
+                                this.props.wait
+                                    ? <img src="img/wait.gif"/>
+                                    :'登陆'
+                            }
                         </button>
                     </div>
                 </div>

@@ -61,7 +61,6 @@ var Mentor = React.createClass({
             scores.q5.push(item.score[5]);
             scores.q6.push(item.score[6]);
         })
-        console.log('namelist:%o,scores:%o',nameList,scores);
         var config = {
             chart: {
                 type: 'column'

@@ -11,6 +11,7 @@ var Store = Reflux.createStore({
         name:'Dian',
         username:null,
         type:0,
+        wait:false,
         isGroupPage:false,
         dataList:[{num:'1',average:'0',username:'dian',score:'0'},
             {num:'2',average:'0',username:'dian',score:'0'},
@@ -34,6 +35,8 @@ var Store = Reflux.createStore({
         }
     },
     onLogin:function(username,passwd,loginSuccess){
+        this.state.wait = true;
+        this.trigger(this.state);
         var args = 'username='+username+'&passwd='+passwd;
         var code = getCode(args);
         args += '&code='+code;
@@ -47,7 +50,9 @@ var Store = Reflux.createStore({
                 this.trigger(this.state);
                 loginSuccess();
             }else{
-                alert('密码错误')
+                alert('密码错误');
+                this.state.wait = false;
+                this.trigger(this.state);
             }
         }.bind(this))
     },
@@ -102,7 +107,16 @@ var Store = Reflux.createStore({
         args += '&code='+code;
         $.getJSON('http://check360.sinaapp.com/index.php/main/get_group_data?'+args+'&callback=?',function(json){
             if(json.status==0){
-                this.state.impression = json.result;
+                var members = json.result.members.map(function(item){
+                    for(var i = 0; i<7;i++){
+                        item.score[i] = Math.round(item.score[i]);
+                    }
+                    return item;
+                })
+                this.state.impression = {
+                    group_name:json.result.group_name,
+                    members:members
+                }
                 this.trigger(this.state);
             }
         }.bind(this))

@@ -30,6 +30,9 @@ var Sidebar = React.createClass({
     showCaptainBox:function(){
        this.setState({captain_impression:true});
     },
+    closeCaptainBox:function(){
+        this.setState({captain_impression:false});
+    },
     render:function(){
         return <div className="sidebar">
             <div className="list-group">
@@ -55,6 +58,7 @@ var Sidebar = React.createClass({
                         <div className="panel panel-info">
                             <div className="panel-heading">
                                 您对本届队长的印象分是多少？
+                                <i className="glyphicon glyphicon-remove" onClick={this.closeCaptainBox}></i>
                             </div>
                             <div className="panel-body">
                                 <div className="row">
