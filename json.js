@@ -1,0 +1,182 @@
+/*
+    login API
+    get:username,passwd
+*/
+
+{
+    status:0,//0代表正常
+    result:{
+        username:'caohang',
+        name:'曹航',
+        type:0,//0普通队员1队长2导师
+        group:[{
+            group_name:'norway',
+            members:[{
+                username:'flyboy',
+                name:'陈利飞',
+                score:[20,20,10,10,10,5,-1] 
+            },
+            {
+                username:'xiatiancheng',
+                name:'夏天成',
+                score:[20,20,10,10,10,5,5]
+            },]
+        }]
+    }
+}
+/*
+    detail API 点击姓名
+    get:from_username(自己的喻信ID),to_username(被评分人喻信ID),group
+*/
+{
+    status:0,
+    result:[20,20,10,10,10,5,5]
+}
+
+/*
+    submit API 
+    get:from_username(自己的喻信ID),to_username(被评分人喻信ID),group,num(题号),score(分数)
+*/
+{
+    status:0
+}
+
+
+/*
+    组内详细成绩,各项加权平均分
+    get:group
+*/
+{
+    status:0,
+    result:[{
+        name:'xxx',
+        score:[0,0,0,0,0,0],
+        username:'caohang'
+    },
+    {
+        name:'xxx',
+        score:[0,0,0,0,0,0],
+        username:'caohang'
+    }]
+}
+
+/*
+    数据榜
+    get:username(喻信ID)
+*/
+{
+    status:0,
+    myscore:[0,0,0,0,0,0,0],
+    result:[{
+        num:1,
+        average:80,
+        name:'陈利飞',
+        username:'flyboy',
+        score:90,
+    },
+    {
+        num:1,
+        average:80,
+        name:'陈利飞',
+        username:'flyboy',
+        score:90,
+    }]
+}
+/*明星榜*/
+{
+    status:0,
+    result:[{
+        name:'曹航',
+        username:'caohang',
+        xmz:10,
+        dwh:2,
+        yxf:3,
+    },
+    {
+        name:'夏天成',
+        username:'xiatiancheng',
+        xmz:10,
+        dwh:2,
+        yxf:3,
+    }]
+}
+
+/*
+    队长专区 评分接口 
+    get:group(项目组),from_username(喻信ID),to_username(喻信ID),score(分值)
+ */
+{
+    status:0,
+}
+
+/*
+    队长&导师，获取项目组信息
+    get:username
+*/
+{
+    status:0,
+    result:{
+        group:[{
+            group_name:'norway',
+            members:[{
+                name:'曹航',
+                username:'caohang',
+                identity:0,//0组长,1组员
+                score:80,
+            },
+            {
+                name:'陈利飞',
+                username:'flyboy',
+                identity:1,//0组长,1组员
+                score:80,
+            }]
+        }]
+    }
+}
+/*
+    获取项目组信息
+    get:group_name
+*/
+{
+    status:0,
+    result:{
+        group_name:'norway',
+        members:[{
+            name:'曹航',
+            score:[0,0,0,0,0,0,0],//项目组各项问题平均分
+            username:'caohang',
+        },{
+            name:'陈利飞',
+            score:[0,0,0,0,0,0,0],//项目组各项问题平均分
+            username:'flyboy',
+        }]
+    }
+}
+
+/*明星榜*/
+
+{
+    status:0,
+    result:[
+        {
+            name:'曹航',
+            username:'caohang',
+            impression_score:80,
+            dxh_score:20,
+            xmz_score:80,
+        },
+        {
+            name:'陈利飞',
+            username:'flyboy',
+            impression_score:80,
+            dxh_score:20,
+            xmz_score:80,
+        },
+    ]
+}
+
+http://121.40.90.254/?r=api/action携带接口的名称
+
+code标示请求的合法性(所有请求都带的)
+http://xxx.xxx.com/?r=api/login&arg1=xxx&arg2=xxx&code=xxxxx
+其中code=md5(“login&arg1=xxx&arg2=xxx” ＋ “dian”).substr(0,5) md5 前5个字符 
