@@ -41,6 +41,10 @@ var Mentor = React.createClass({
     },
     render:function(){
         var impression = this.state.store.impression;
+        var describes = ['时间','质量','主动性','责任心','影响力','文化活动','技术贡献'];
+        if(impression.group_name.match('seed')){
+            describes = ['课堂','课设','班级工作','责任心','影响力','文化活动','班级荣誉'];
+        }
         var nameList = [];
         var scores = {
             q0:[],
@@ -66,7 +70,7 @@ var Mentor = React.createClass({
                 type: 'column'
             },
             title: {
-                text: '360项目组详细得分',
+                text: impression.group_name.match('seed')?'360种子班详细得分':'360项目组详细得分'
             },
             xAxis: {
                 categories: nameList,
@@ -112,25 +116,25 @@ var Mentor = React.createClass({
                 }
             },
             series: [{
-                name: '时间',
+                name: describes[0],
                 data: scores.q0,
             }, {
-                name: '质量',
+                name: describes[1],
                 data: scores.q1,
             }, {
-                name: '主动性',
+                name: describes[2],
                 data: scores.q2,
             },{
-                name: '责任心',
+                name: describes[3],
                 data: scores.q3,
             }, {
-                name: '影响力',
+                name: describes[4],
                 data: scores.q4,
             }, {
-                name: '文化活动',
+                name: describes[5],
                 data: scores.q5,
             },{
-                name: '技术贡献',
+                name: describes[6],
                 data: scores.q6,
             }]
         };
@@ -161,6 +165,9 @@ var Mentor = React.createClass({
                                 <a href='#' className="list-group-item " data-group='admin' onClick={this.handleClick}>行政部</a>
 
                                 <a href='#' className="list-group-item " data-group='finance' onClick={this.handleClick}>财务组</a>
+
+                                <a href='#' className="list-group-item " data-group='seed12' onClick={this.handleClick}>12级种子班</a>
+                                <a href='#' className="list-group-item " data-group='seed13' onClick={this.handleClick}>13级种子班</a>
 
                             </div>
                         </div>

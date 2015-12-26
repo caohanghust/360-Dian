@@ -505,22 +505,22 @@ var question = {
                 {
                     optionIndex:1,
                     content:'经常主动请求活动组织任务，对文化建设有较大贡献',
-                    score:5
+                    score:10
                 },
                 {
                     optionIndex:2,
                     content:'分配的活动任务会认真完成，但不主动申请',
-                    score:4
+                    score:8
                 },
                 {
                     optionIndex:3,
                     content:'从未参加活动组织工作，但经常积极参与',
-                    score:3
+                    score:5
                 },
                 {
                     optionIndex:4,
                     content:'很少参与集体文化活动或者分配的活动任务不会认真完成',
-                    score:1
+                    score:3
                 },
                 {
                     optionIndex:5,

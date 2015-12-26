@@ -121,7 +121,7 @@ var SidebarItem = React.createClass({
                             this.props.group.members.map(function(item,index){
                                 var group_name = this.props.group.group_name;
                                 var completed = false;
-                                if(group_name=='tech'){
+                                if(group_name=='tech'||group_name=='public'||group_name=='admin'){
                                     var counter = 0 ;
                                     for(var i=0;i<5;i++){
                                         if(item.score[i]!=-1){
@@ -145,7 +145,6 @@ var SidebarItem = React.createClass({
                                 return <a href="#"
                                           className={"list-group-item fadeIn animated name "}
                                           onClick={this.changeMember}
-                                          onMouseEnter={this.changeMember}
                                           key={item.username}
                                           data-index={index}>
                                     {item.name}
