@@ -20,7 +20,7 @@ var Sidebar = React.createClass({
             if(impression_score<=0||impression_score>100){
                 alert('分值有误，请重新输入');
             }else{
-                Actions.submitImpression('qingcheng',impression_score);
+                Actions.submitImpression('qingchen',impression_score);
                 this.setState({captain_impression:false});
             }
         }else{
@@ -99,9 +99,14 @@ var SidebarItem = React.createClass({
         this.props.foldController(this.props.group.group_name);
     },
     changeMember:function(e){
-        var index = e.target.getAttribute('data-index');
-        var user = this.props.group.members[parseInt(index)];
-        Actions.changeMember(user,this.props.group.group_name);
+        var index = e.currentTarget.getAttribute('data-index');
+        if(index){
+            var user = this.props.group.members[parseInt(index)];
+            Actions.changeMember(user,this.props.group.group_name);
+        }
+        else{
+            console.log(e.target);
+        }
     },
     render:function(){
         return (<div className="sidebar-item">
