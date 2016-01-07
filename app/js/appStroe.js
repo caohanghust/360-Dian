@@ -37,18 +37,31 @@ var Store = Reflux.createStore({
     onLogin:function(username,passwd,loginSuccess){
         this.state.wait = true;
         this.trigger(this.state);
+        //passwd转义
+        var passwd = passwd.replace(/&/g,'%26');
+        passwd = passwd.replace(/\?/g,'%25');
+
         var args = 'username='+username+'&passwd='+passwd;
         var code = getCode(args);
         args += '&code='+code;
         $.getJSON('http://check360.sinaapp.com/index.php/main/login?'+args+'&callback=?',function(json){
             if(json.status==0){
-                this.state.type = json.type;
-                this.state.group = json.result.group;
-                this.state.username = json.result.username;
-                this.state.name = json.result.name;
-                this.state.unfold = json.result.group[0].group_name;
-                this.trigger(this.state);
-                loginSuccess();
+                if(json.type==2){
+                    //身份为导师
+                    this.state.type = json.type;
+                    this.state.username = json.result.username;
+                    this.state.name = json.result.name;
+                    this.trigger(this.state);
+                    loginSuccess();
+                }else{
+                    this.state.type = json.type;
+                    this.state.group = json.result.group;
+                    this.state.username = json.result.username;
+                    this.state.name = json.result.name;
+                    this.state.unfold = json.result.group[0].group_name;
+                    this.trigger(this.state);
+                    loginSuccess();
+                }
             }else{
                 alert('密码错误');
                 this.state.wait = false;
@@ -95,8 +108,17 @@ var Store = Reflux.createStore({
 
        $.getJSON('http://check360.sinaapp.com/index.php/main/get_data_rank?'+args+'&callback=?',function(json){
            if(json.status==0){
-               this.state.dataList = json.result;
-               this.state.myscore = json.myscore;
+               var result = json.result.map(function(item){
+                   item.average = parseFloat(parseFloat(item.average).toFixed(1));
+                   item.score = parseFloat(parseFloat(item.score).toFixed(1));
+                   return item;
+               })
+               var myscore = json.myscore.map(function(item){
+                   item = parseFloat(parseFloat(item).toFixed(1));
+                   return item;
+               })
+               this.state.dataList = result;
+               this.state.myscore = myscore;
                this.trigger(this.state);
            }
        }.bind(this))
@@ -134,7 +156,12 @@ var Store = Reflux.createStore({
     onGetStarList:function(){
         $.getJSON('http://check360.sinaapp.com/index.php/main/get_stars?callback=?',function(json){
             if(json.status==0){
-                this.state.starList = json.result;
+                var result = json.result.map(function(item){
+                    item.dwh_score = parseFloat(parseFloat(item.dwh_score).toFixed(2));
+                    item.xmz_score = parseFloat(parseFloat(item.xmz_score).toFixed(2));
+                    return item;
+                })
+                this.state.starList = result;
                 this.trigger(this.state);
             }
         }.bind(this))

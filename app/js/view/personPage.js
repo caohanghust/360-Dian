@@ -6,6 +6,15 @@ import Sidebar from './sidebar';
 
 var personPage = React.createClass({
     mixins:[Reflux.connect(Store,'store')],
+    reset:function(){
+        Actions.submitScore(1,-1);
+        Actions.submitScore(2,-1);
+        Actions.submitScore(3,-1);
+        Actions.submitScore(4,-1);
+        Actions.submitScore(5,-1);
+        Actions.submitScore(6,-1);
+        Actions.submitScore(7,-1);
+    },
     render:function(){
         return <div className='zoomInRight animated'>
             <div className="left-box">
@@ -13,6 +22,7 @@ var personPage = React.createClass({
             </div>
             <div className="right-box">
                 <div className="container">
+
                     <div className="row">
                         <h2 className="text-center">
                     <span className="group-title">
@@ -27,6 +37,9 @@ var personPage = React.createClass({
                         </h2>
                         <h5 className="text-center">
                             如无共事过直接跳过即可
+                            <button className="btn btn-default reset" onClick={this.reset}>
+                                重置
+                            </button>
                         </h5>
                     </div>
                     <div className="col-xs-3 q-box">
